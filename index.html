@@ -1,0 +1,166 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Valentine's Day ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }/* Desktop blocker */
+@media (min-width: 768px) {
+  body::before {
+    content: "Please open this on your phone 📱💖";
+    font-size: 2rem;
+    color: white;
+  }
+  .card { display: none; }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 32px;
+  border-radius: 20px;
+  width: 90vw;
+  max-width: 380px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: float 4s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+h1 { font-size: 2.2rem; }
+p { font-size: 1.1rem; }
+
+.heart { font-size: 2.8rem; animation: pulse 1.5s infinite; margin: 10px 0; }
+
+.miffys { display: flex; justify-content: center; gap: 10px; margin: 10px 0 20px; }
+.miffy { width: 90px; }
+
+.buttons { display: flex; justify-content: center; margin-top: 20px; position: relative; height: 60px; }
+
+button {
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  position: absolute;
+}
+
+button.no {
+  background: #ffffff55;
+  left: 55%;
+}
+
+.yay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff4d6d, #ffb3c1);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 2rem;
+  z-index: 10;
+}
+
+.yay .miffy { width: 140px; margin-bottom: 20px; }
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.confetti span {
+  position: absolute;
+  font-size: 20px;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Dianne 💖</h1>
+    <div class="heart">❤️</div>
+    <div class="miffys">
+      <img class="miffy" src="https://upload.wikimedia.org/wikipedia/en/4/4d/Miffy.png" alt="Miffy">
+      <img class="miffy" src="https://upload.wikimedia.org/wikipedia/en/4/4d/Miffy.png" alt="Miffy">
+      <img class="miffy" src="https://upload.wikimedia.org/wikipedia/en/4/4d/Miffy.png" alt="Miffy">
+    </div>
+    <p>
+      Will you be my Valentine, Dianne? 💕<br /></p>
+<div class="buttons">
+  <button onclick="yesClicked()" style="left: 10%">Yes 💖</button>
+  <button class="no" onmouseenter="escapeNo()" ontouchstart="escapeNo()">No 🙈</button>
+</div>
+<div class="yay" id="yay">
+  <img class="miffy" src="https://upload.wikimedia.org/wikipedia/en/4/4d/Miffy.png" alt="Miffy">
+  <div>YAY!! 💕</div>
+  <p>Miffy is celebrating 🎉</p>
+  <div class="heart">❤️❤️❤️</div>
+</div>
+<div class="confetti" id="confetti"></div>
+<div class="yay" id="yay">
+  <img class="miffy" src="https://upload.wikimedia.org/wikipedia/en/4/4d/Miffy.png" alt="Miffy">
+  <div>YAY!! 💕 💕🐰</div>
+  <p>Miffy is celebrating 🎉</p>
+  <div class="heart">❤️❤️❤️</div>
+</div>
+
+  </div>  <script>
+    function yesClicked() {
+      document.getElementById('yay').style.display = 'flex';
+      launchConfetti();
+    }
+
+    function escapeNo() {
+      const btn = document.querySelector('.no');
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 120);
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    function launchConfetti() {
+      const confetti = document.getElementById('confetti');
+      confetti.innerHTML = '';
+      const hearts = ['💖','💕','❤️','💗','💘'];
+      for (let i = 0; i < 60; i++) {
+        const span = document.createElement('span');
+        span.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDelay = Math.random() * 1 + 's';
+        confetti.appendChild(span);
+      }
+    }
+  </script></body>
+</html> 1 + 's';
+        confetti.appendChild(span);
+      }
+    }
+  </script></body>
+</html>
