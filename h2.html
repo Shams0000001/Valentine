@@ -1,0 +1,217 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Valentine's Day ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  body {
+    display: none;
+  }
+}
+
+.card {
+  width: 90vw;
+  max-width: 360px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 10px;
+}
+
+p {
+  font-size: 1.05rem;
+  margin: 10px 0;
+}
+
+.heart {
+  font-size: 2.5rem;
+  animation: pulse 1.5s infinite;
+  margin: 10px 0;
+}
+
+.miffy-art {
+  width: 140px;
+  max-width: 60vw;
+  height: auto;
+  margin: 12px auto;
+  display: block;
+  animation: pulse 2s infinite;
+}
+
+.buttons {
+  position: relative;
+  margin-top: 20px;
+  height: 56px;
+  width: 100%;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 22px;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.25s ease, left 0.35s ease, top 0.35s ease, opacity 0.3s ease;
+}
+
+button.yes {
+  background: #ff4d6d;
+  position: absolute;
+  left: 0;
+}
+
+button.no {
+  background: #ffffff55;
+  position: absolute;
+  right: 0;
+}
+
+button.tired {
+  opacity: 0.6;
+  transform: scale(0.9);
+}
+
+.shake {
+  animation: shake 0.25s;
+}
+
+.yay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff4d6d, #ffb3c1);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.confetti span {
+  position: absolute;
+  font-size: 20px;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+  </style>
+</head>
+<body>  <div class="card">
+    <h1>Dianne 💖</h1>
+    <div class="heart">❤️</div>
+    <img src="miffy.png" alt="Miffy" class="miffy-art" />
+    <p>Will you be my Valentine? 💕</p><div class="buttons">
+  <button class="yes" onclick="yesClicked()">Yes 💖</button>
+  <button class="no" onclick="runAway(this)">No 🙈</button>
+</div>
+
+  </div>  <div class="yay" id="yay">
+    <img src="miffy.png" alt="Miffy" class="miffy-art" />
+    <div class="heart">💖💖💖</div>
+    <div>YAY!! 💕</div>
+  </div>  <div class="confetti" id="confetti"></div>  <script>
+    let noClicks = 0;
+
+    function yesClicked() {
+      document.getElementById('yay').style.display = 'flex';
+      launchConfetti();
+    }
+
+    function runAway(btn) {
+      noClicks++;
+
+      btn.classList.remove('shake');
+      void btn.offsetWidth;
+      btn.classList.add('shake');
+
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 600;
+      gain.gain.value = 0.05;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.08);
+
+      if (noClicks >= 6) {
+        btn.classList.add('tired');
+      }
+
+      const maxX = window.innerWidth - btn.offsetWidth - 10;
+      const maxY = window.innerHeight - btn.offsetHeight - 10;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    function launchConfetti() {
+      const confetti = document.getElementById('confetti');
+      confetti.innerHTML = '';
+      const hearts = ['💖','💕','❤️','💗','💘'];
+      for (let i = 0; i < 60; i++) {
+        const span = document.createElement('span');
+        span.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDelay = Math.random() * 1 + 's';
+        confetti.appendChild(span);
+      }
+    }
+  </script></body>
+</html>
